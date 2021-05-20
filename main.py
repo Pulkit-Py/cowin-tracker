@@ -3,16 +3,18 @@ import datetime
 import json
 from fake_useragent import UserAgent
 from pynotifier import Notification
-temp_user_agent = UserAgent()
-browser_header = {'User-Agent': temp_user_agent.random}
-POST_CODE = "247667"
-age = 19
+import  time
 
-# Print details flag
-print_flag = 'Y'
 
 while(True):
-    INP_DATE = "20-05-2021"
+    temp_user_agent = UserAgent()
+    browser_header = {'User-Agent': temp_user_agent.random}
+    POST_CODE = "247667"
+    age = 19
+# Print details flag
+    print_flag = 'Y'
+    time.sleep(1)
+    INP_DATE = "21-05-2021"
     URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={}&date={}".format(POST_CODE, INP_DATE)
     response = requests.get(URL, headers=browser_header)
     if response.ok:
@@ -35,7 +37,8 @@ while(True):
                                 pass
                             if(session["vaccine"] != ''):
                                 print("\t Vaccine: ", session["vaccine"])
-                            print("\n\n")          
+                            print("\n\n")
+                            
         else:
             print("No available slots on {}".format(INP_DATE))
 
